@@ -22,12 +22,48 @@ public class JDBCApplication {
 		System.out.println("Driver instalado y funcionando");
 		Connection connection = null;
 		Statement statement = null;
+		
+		 
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/petclinic","root", "root");
 			if (connection != null)
 				System.out.println("Conexión establecida");
+			String sql = "SELECT * FROM owners";
+			try {
+				statement = connection.createStatement();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
+			ResultSet rs = null;
+			try {
+				rs = statement.executeQuery(sql);
+				while (rs.next()) {
+				    System.out.println (rs.getString("id"));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			rs.close();
+			//insert
+			//statement.executeUpdate("INSERT INTO owners " + "VALUES (11, 'Manuel', 'bermudo.', 'Boston', 'fefe', '65866666')");
 		    
+			//statement.executeUpdate("UPDATE owners SET city=Sevilla WHERE first_name=Manuel");
+			
+			String sql2 = "SELECT * FROM owners WHERE first_name LIKE 'Manuel'";
+			
+			try {
+				ResultSet rs2 = statement.executeQuery(sql2);
+				while (rs2.next()) {
+				    System.out.println (rs2.getString("first_name"));
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
@@ -46,6 +82,14 @@ public class JDBCApplication {
 		         	se.printStackTrace();
 		    }
 		}
+		
+		
+		
 	}
+			 
+			
+		   
+			
+	
 
 }

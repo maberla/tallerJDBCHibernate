@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ken Krebs
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @author Michael Isvy
+ * @author Michael Isvy	
  */
 public interface VetRepository extends Repository<Vet, Integer> {
 
